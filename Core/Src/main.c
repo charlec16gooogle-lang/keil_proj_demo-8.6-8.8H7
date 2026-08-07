@@ -24,7 +24,7 @@
 /* USER CODE BEGIN Includes */
 /*
  * 为什么调用自己的文件时，要先把 .c 文件加进 Keil 工程？
- * 1. Keil 不会自动扫描文件夹里的源码，只有 .uvprojx 中列出的 .c 文件才会参与编译；
+ * 1. Keil 不会自动扫描文件夹里的源码，只有 .uvprojx 中列出的 .c 文件才会参与编译；`
  * 2. 头文件 .h 只负责声明函数，函数的真正实现还在 .c 文件里；
  * 3. 如果只 #include 头文件但没有把 .c 加进工程，编译可能通过，
  *    但链接时会报 Undefined symbol 之类的错误，因为找不到函数实现；
@@ -37,7 +37,7 @@
 #include "buzzer.h"   /* 蜂鸣器驱动的函数声明 */
 #include "led.h"      /* LED 驱动的函数声明 */
 
-// 在这里替换成#include user_beep.h
+#include "user_beep.h"
 
 /* USER CODE END Includes */
 
@@ -51,7 +51,7 @@
 /* #define 是宏定义：编译前会把名字替换成后面的内容 */
 #define LED_COUNT   4U    /* 板载 LED 数量，U 表示 unsigned 无符号数 */
 #define BLINK_TIMES 5U    /* 每颗 LED 闪烁次数 */
-#define DELAY_MS    330U  /* LED 亮/灭持续时间，单位毫秒 */
+#define DELAY_MS    500U  /* LED 亮/灭持续时间，单位毫秒 */
 #define BEEP_MS     120U  /* 蜂鸣器响一声的时长 */
 /* USER CODE END PD */
 
