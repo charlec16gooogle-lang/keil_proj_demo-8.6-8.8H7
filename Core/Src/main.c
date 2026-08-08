@@ -38,6 +38,7 @@
 #include "led.h"      /* LED 驱动的函数声明 */
 
 #include "user_beep.h"
+#include "user_88_task.h"  /* 给main.c调用的作业函数 */
 
 /* USER CODE END Includes */
 
@@ -128,26 +129,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    current_led = 1U; /* 练习点：改成 2U，观察从哪颗 LED 开始 */
-
-    /* while 循环：条件成立就反复执行 {} 里的代码 */
-    while (current_led <= led_count)
-    {
-      blink_led(current_led, current_led, delay_ms);
-      current_led++; /* 等价于 current_led = current_led + 1 */
-    }
-
-   // beep(BEEP_MS);
-
-    /* if / else 判断：让延时每次变快一点，到 100 后重新回到初始值 */
-    if (delay_ms > 100U)
-    {
-      delay_ms += 20U; /* 练习点：改成 += 20U 看速度变化方向 */
-    }
-    else
-    {
-      delay_ms = DELAY_MS;
-    }
+    user_88_task(); // 调用封装好的作业逻辑
   }
   /* USER CODE END 3 */
 }

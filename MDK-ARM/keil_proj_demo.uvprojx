@@ -544,6 +544,11 @@
               <FileType>1</FileType>
               <FilePath>..\user\src\user_beep.c</FilePath>
             </File>
+            <File>
+              <FileName>user_88_task.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\user\src\user_88_task.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
