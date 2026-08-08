@@ -38,7 +38,8 @@
 #include "led.h"      /* LED 驱动的函数声明 */
 
 #include "user_beep.h"
-#include "user_88_task.h"  /* 给main.c调用的作业函数 */
+#include "user_88_task.h"  /* 给main.c调用的作业1+3函数 */
+#include "alarm_sys.h"  /* 8.8作业四的流水灯报警系统函数调用*/
 
 /* USER CODE END Includes */
 
@@ -72,8 +73,7 @@ void SystemClock_Config(void);
 static void MPU_Config(void);
 /* USER CODE BEGIN PFP */
 /* 函数声明（原型）：告诉编译器函数名、参数和返回值，定义在下方 USER CODE 4 */
-void blink_led(uint8_t led_num, uint16_t times, uint32_t delay_ms);
-void beep(uint32_t beep_ms);
+/*现在在8.8作业四的流水灯报警系统中 这个删掉了void blink_led(...) 和 void beep(...)函数声明*/
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -129,7 +129,8 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    user_88_task(); // 调用封装好的作业逻辑
+    //user_88_task(); // 调用封装好的作业逻辑--现在因为8.8作业四的流水灯报警系统 再次被注释掉 被归在alarm_sys_func()中调用
+    alarm_sys_func(MODE_ALARM);   /*8.8作业四的报警系统的函数 这里为了测试结果明显 我们选择了报警模式*/
   }
   /* USER CODE END 3 */
 }
@@ -194,33 +195,7 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-/* 函数定义：这里才是函数的具体实现 */
-void blink_led(uint8_t led_num, uint16_t times, uint32_t delay_ms)
-{
-  uint16_t i = 0U; /* 循环计数变量 */
 
-  /* if 判断：LED 编号只允许 1~4 */
-  if (led_num > LED_COUNT)
-  {
-    return; /* return 直接结束当前函数 */
-  }
-
-  /* for 循环：初始化; 判断条件; 每次循环后执行 */
-  for (i = 0U; i < times; i++)
-  {
-    led_on(led_num);          /* 点亮指定 LED */
-    HAL_Delay(delay_ms);      /* 延时一段时间 */
-    led_off(led_num);         /* 熄灭指定 LED */
-    HAL_Delay(delay_ms);
-  }
-}
-
-void beep(uint32_t beep_ms)
-{
-  buzzer_on();          /* 打开蜂鸣器 */
-  HAL_Delay(beep_ms);   /* 保持响一段时间 */
-  buzzer_off();         /* 关闭蜂鸣器 */
-}
 /* USER CODE END 4 */
 
  /* MPU Configuration */
