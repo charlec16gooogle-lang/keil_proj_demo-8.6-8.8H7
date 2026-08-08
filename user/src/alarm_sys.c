@@ -43,6 +43,11 @@ void alarm_sys_func(AlarmMode_t mode)
     {
         case MODE_STANDBY:
             /* 待机模式：流水灯不亮，蜂鸣器不响 */
+            for (uint8_t i = 1U; i <= LED_COUNT; i++)
+            {
+                led_off(i); /* 灯全部熄灭 */
+            }
+            buzzer_off();   /* 蜂鸣器关闭 */
             HAL_Delay(100); 
             break;
 
